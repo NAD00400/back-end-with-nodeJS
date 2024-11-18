@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node ./src/server.js"
+    "dev": "nodemon ./src/server.js"
   },
   "keywords": [
     "nodejs"
@@ -17,5 +17,8 @@
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "exprss": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
