@@ -13,20 +13,28 @@
         <li><a class="active" href="/">Home</a></li>
         <li><a href="/create">Create User</a></li>
     </ul>
+    <!-- <%=JSON.stringify(listUsers)%> -->
     <table id="customers">
       <tr>
-        <th>Name</th>
+        <th>ID</th>
         <th>Email</th>
-        <th>Phone</th>
+        <th>Name</th>
+
         <th>City</th>
+        <th>Action</th>
       </tr>
+      <%listUsers.forEach(function(user,index){ %>
       <tr>
-        <td>nguyeen khuat anh duy</td>
-        <td>anhduygnuyenkhuat@gmail.com</td>
-        <td>000000009</td>
-        <td>sai gon</td>
+        <td><%=user.id  %></td>
+        <td><%=user.email %></td>
+        <td><%=user.name %></td>
+        <td><%=user.city %></td>
+        <td>
+          <a href="/updateUser">edit</a>
+          <button>del</button>
+        </td>
       </tr>
-      
+      <%})%>
     </table>
 </body>
 </html>

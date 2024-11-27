@@ -1,10 +1,14 @@
-const connection = require("../config/database")
+const connection = require("../config/database");
+const {getAllUsers} = require("../services/CRUDService");
 
-const getHomePage = (req,res )=>{
-    return res.render("home.ejs")
+const getHomePage = async(req,res )=>{
+    
+    let results = await getAllUsers();
+   
+    return res.render("home.ejs",{listUsers:results});
 }
-const getABC =(req,res)=>{
-    res.send("home a b c")
+const getUpadateUser =(req,res)=>{
+    res.render("updateUser.ejs")
 }
 
 const getnguyenAnhduy =(req,res)=>{
@@ -22,4 +26,4 @@ const getCreatePage = (req, res) => {
     res.render('create.ejs')
 }
 
-module.exports ={getHomePage,getnguyenAnhduy, getABC ,postCreateUser,getCreatePage};
+module.exports ={getHomePage,getnguyenAnhduy, getUpadateUser,postCreateUser,getCreatePage};
