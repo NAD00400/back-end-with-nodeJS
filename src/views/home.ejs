@@ -25,13 +25,16 @@
       </tr>
       <%listUsers.forEach(function(user,index){ %>
       <tr>
-        <td><%=user.id  %></td>
+        <td><%=user.id%></td>
         <td><%=user.email %></td>
         <td><%=user.name %></td>
         <td><%=user.city %></td>
         <td>
-          <a href="/updateUser">edit</a>
-          <button>del</button>
+         <flex style="display: flex;flex-direction:row;">
+            <a href="/update/<%= user.id %>">Edit</a>
+     
+            <form action="/delete/<%= user.id%>" method="get"><button>delete</button></form>
+         </flex>
         </td>
       </tr>
       <%})%>

@@ -1,0 +1,102 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+
+    <style>
+      ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+.active {
+  background-color: #04aa6d;
+}
+
+    * {
+      margin: 0;
+      font-family: "Courier New", Courier, monospace;
+    }
+    
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td,
+    #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    #customers tr:hover {
+      background-color: #ddd;
+    }
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04aa6d;
+      color: white;
+    }
+    </style>
+</head>
+
+<body>
+  <ul>
+    <li><a  href="/">Home</a></li>
+    <li><a href="/create">Create User</a></li>
+  </ul>
+    <!-- <%= JSON.stringify(userEdit)%> -->
+    <form action="/update-user" method="POST" style="display: flex; justify-content:center;align-items: center;margin-top:40px;">
+        <fieldset>
+          <legend>edit user :</legend>
+          <div style="display: none;" >
+            <label for="fname">Id:</label>
+            <input type="text" name="userId" value="<%=userEdit.id%>"><br><br>
+          </div>
+          <div>
+            <label for="fname">First name:</label>
+            <input type="text"  name="email" value="<%=userEdit.name%>"><br><br>
+          </div>
+         <div>
+            <label for="email">Email:</label>
+            
+            <input type="email" name="name" value="<%=userEdit.email%>"><br><br>
+         </div>
+          <div>
+            <label for="birthday">city:</label>
+            <input type="text"  name="city" value="<%=userEdit.city%>"><br><br>
+          </div>
+          <div>
+            <input type="submit" value="save">
+          </div>
+        </fieldset>
+      </form>
+</body>
+</html>

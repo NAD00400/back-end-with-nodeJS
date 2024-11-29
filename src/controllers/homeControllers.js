@@ -1,29 +1,45 @@
 const connection = require("../config/database");
-const {getAllUsers} = require("../services/CRUDService");
+const {getAllUsers,getUserById, postUpdateUserById,postCreateUserCRUD,postDeleteUserbyId} = require("../services/CRUDService");
 
 const getHomePage = async(req,res )=>{
-    
     let results = await getAllUsers();
-   
-    return res.render("home.ejs",{listUsers:results});
+    res.render("home.ejs",{listUsers:results});
 }
-const getUpadateUser =(req,res)=>{
-    res.render("updateUser.ejs")
+const getCreatePage = (req, res) => {
+    res.render('create.ejs')
 }
 
 const getnguyenAnhduy =(req,res)=>{
     res.send("home nguyen anh duy")
 }
 
-const postCreateUser = async (req,res) => {
+const postHandleCreateUser= async (req,res) => {
     let {name,email,city}=req.body; //<=> let email= req.body.email; let name = req.body.name; let city =req.body.city;
-    let [results, fields] = await connection.query(
-        `INSERT INTO Users (email, name, city) VALUES (?, ?, ?) `, [email, name, city]
-    )
+    await postCreateUserCRUD(name,email,city);
+    res.redirect('/')
 }
 
-const getCreatePage = (req, res) => {
-    res.render('create.ejs')
+
+
+const getUpdateUser =async(req,res)=>{
+    let userId =req.params.id;
+    const user = await getUserById(userId);
+    res.render("update.ejs",{userEdit:user})// x <- y
+}
+const postHandleUpdateUser = async (req,res) => {
+    let {name,email,city,userId}=req.body; //<=> let email= req.body.email; let name = req.body.name; let city =req.body.city;
+    await postUpdateUserById(name,email,city,userId);
+    res.redirect('/')
 }
 
-module.exports ={getHomePage,getnguyenAnhduy, getUpadateUser,postCreateUser,getCreatePage};
+const getDeleteUser=async(req,res)=>{
+    let userId =req.params.id;
+    const user =await getUserById(userId);
+    res.render('delete.ejs',{userEdit:user})
+}
+const postSubmitDeleteUser =async(req,res)=>{
+    let {userId}=req.body;
+    await postDeleteUserbyId(userId);
+    res.redirect('/')
+}
+module.exports ={getHomePage ,getnguyenAnhduy, getUpdateUser ,postHandleCreateUser ,getCreatePage,postHandleUpdateUser,postSubmitDeleteUser ,getDeleteUser};
