@@ -22,6 +22,7 @@ configViewEngine(app);
 app.use('/',webRoutes)
 
 // test connection 
+connection()
 // connection.query(
 //   'SELECT * FROM Users u',
 //   function (err, results, fields) {
