@@ -17,10 +17,12 @@
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "exprss": "^0.0.1-security",
+    "mongodb": "^6.11.0",
     "mongoose": "^8.8.3",
     "mysql2": "^3.11.4"
   },
   "devDependencies": {
+    "@types/node": "^22.10.1",
     "nodemon": "^3.1.7"
   }
 }

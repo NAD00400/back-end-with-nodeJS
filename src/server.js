@@ -19,18 +19,15 @@ app.use(express.urlencoded({extended: true}));
 configViewEngine(app);
 
 //khai bao route
-app.use('/',webRoutes)
+app.use('/',webRoutes);
 
-// test connection 
-connection()
-// connection.query(
-//   'SELECT * FROM Users u',
-//   function (err, results, fields) {
-//   // console.log(">>> check results",results ); // results contains rows returned by server
-//   }
-// );
-
-
-app.listen(port,hostname, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+(async() => {
+  try {
+      await connection();
+      app.listen(port, hostname, () => {
+          console.log(`Backend Zero app listening on port ${port}`)
+      })
+  } catch (error) {
+      console.error("Error connecting to DB", error);
+  }
+})();
