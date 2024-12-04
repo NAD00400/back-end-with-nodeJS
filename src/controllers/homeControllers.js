@@ -23,8 +23,8 @@ const postHandleCreateUser= async (req,res) => {
         ,name
         ,city
     })
-    res.send("tao user thanh cong")
-    // res.redirect('/')
+    // res.send("tao user thanh cong")
+    res.redirect('/')
 }
 
 const getUpdateUser =async(req,res)=>{
@@ -47,7 +47,7 @@ const getDeleteUser=async(req,res)=>{
 }
 const postSubmitDeleteUser =async(req,res)=>{
     let {userId}=req.body;
-    await Character.deleteOne({_id:userId});
+    await User.deleteOne({_id:userId});
     res.redirect('/')
 }
 module.exports ={getHomePage ,getnguyenAnhduy, getUpdateUser ,postHandleCreateUser ,getCreatePage,postHandleUpdateUser,postSubmitDeleteUser ,getDeleteUser};
