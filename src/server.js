@@ -6,6 +6,7 @@ const webRoutes = require("./routes/web")
 const connection =require('./config/database');
 const { postCreateUser } = require('./controllers/homeControllers');
 const { log } = require('console');
+const mongoose = require('mongoose');
 
 require('dotenv').config();// dotenv
 const port = process.env.PORT || 8888;
@@ -20,6 +21,8 @@ configViewEngine(app);
 
 //khai bao route
 app.use('/',webRoutes);
+
+
 
 (async() => {
   try {

@@ -1,7 +1,7 @@
 const connection = require("../config/database");
 
 const getAllUsers = async ()=>{
-    let [results,fields] = await connection.query(`select * from Users`);
+    let [results, fields] = await connection.query(`select * from Users`);
     return results;
 }
 const getUserById = async (userId)=>{
@@ -24,8 +24,6 @@ const postCreateUserCRUD = async(name,email,city)=>{
     )
 }
 const postDeleteUserbyId = async(id)=>{
-    let [results, fields] = await connection.query(
-        `DELETE FROM Users WHERE id=?; `, [id]
-    )
+    let [results, fields] = await connection.query(`DELETE FROM Users WHERE id=?; `, [id])
 }
 module.exports={getAllUsers,getUserById,postUpdateUserById,postCreateUserCRUD ,postDeleteUserbyId}
