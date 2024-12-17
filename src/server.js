@@ -10,6 +10,10 @@ const connection =require('./config/database');
 const { postCreateUser } = require('./controllers/homeControllers');
 const { log } = require('console');
 const mongoose = require('mongoose');
+const fileUpload =require("express-fileupload")
+
+//default option 
+app.use(fileUpload())
 
 require('dotenv').config();// dotenv
 const port = process.env.PORT || 8888;
