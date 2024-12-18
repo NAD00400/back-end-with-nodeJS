@@ -1,7 +1,7 @@
 const connection = require("../config/database");
 const {getAllUsers,getUserById, postUpdateUserById,postCreateUserCRUD,postDeleteUserbyId} = require("../services/CRUDService");
 
-const User = require("../models/user")
+const User = require("../models/customer")
 
 const getHomePage = async(req,res )=>{
     let results =await User.find({});

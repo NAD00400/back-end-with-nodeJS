@@ -1,6 +1,6 @@
 
-const User = require("../models/user")
-const {upLoadSingleFile}= require("../services/fileService")
+const User = require("../models/customer")
+const {upLoadSingleFile, uploadMutipleFile}= require("../services/fileService")
 const getUserAPi = async(req,res )=>{
     let results =await User.find({});
     return res.status(200).json(
@@ -49,11 +49,38 @@ const deleteUpdateUserById =async(req,res)=>{
 
 const postUploadSingleFile =async(req,res)=>{
     if (!req.files || Object.keys(req.files).length === 0) {
-        res.status(400).send('No files were uploaded.');
+        return res.status(400).json({
+            EC: 1,
+            message: 'No files were uploaded.',
+        });
        }   
-    fileObject = req.files.image ;   
-    let results = await upLoadSingleFile(req.files.image);
-    return res.send("oke single ")
-    
+    const fileObject = req.files.image ;   
+    let results = await upLoadSingleFile(fileObject);
 }
-module.exports= {getUserAPi,postCreateUserAPI, putUpdateUserById,deleteUpdateUserById,postUploadSingleFile}
+const postUploadMultipleFile =async(req,res)=>{
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).json({
+                EC: 1,
+                message: 'No files were uploaded.',
+            });
+        }  
+        const fileArr = req.files.image;
+        if( Array.isArray(fileArr)){
+            const results = await uploadMutipleFile(fileArr);
+            return res.status(200).json({
+                EC:0,
+                message: 'Multiple files uploaded successfully.',
+                data:results
+            })  
+        }
+        else{
+            const singleResult = await postUploadSingleFile(req,res)
+            return res.status(200).json({
+                EC: 0,
+                message: 'Single file uploaded successfully.',
+                data: singleResult,
+            });
+        }
+    }
+
+module.exports= {getUserAPi,postCreateUserAPI, putUpdateUserById,deleteUpdateUserById,postUploadSingleFile,postUploadMultipleFile }
